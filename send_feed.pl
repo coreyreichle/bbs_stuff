@@ -41,6 +41,7 @@ $smtp->auth("$mail_user", "$mail_password");
 			my $text = $body->body;
 			my $hr = HTML::Strip->new();
 			my $clean = $hr->parse ( $text ) ."\n";
+			$clean =~ s/\x{2019}/'/g;
 	  		$smtp->datasend ( encode("ISO-8859-1",$clean) );
 		}
 		$smtp->datasend ("\n###\n");
